@@ -1,21 +1,16 @@
-# Vercel deployment
+# Vercel deployment (frontend only)
 
-The repository is configured to deploy from its root directory. The Vercel build installs the client dependencies, runs the TypeScript and Vite production build, and publishes `client/dist`. Client-side routes are rewritten to `index.html`, and the mock API is served from a Vercel Function.
+Deploy the Vite app as its own static Vercel project. The frontend uses local fixture data, so it does not need the Express server or the API function for this deployment.
 
 ## Deploy
 
 1. Import this repository into Vercel.
-2. Set the project Root Directory to the repository root (not `client`).
-3. Leave the build, install, and output settings at their `vercel.json` defaults.
-4. Deploy. The current prototype does not require environment variables.
+2. In **Project Settings → Build and Deployment**, set **Root Directory** to `client` and save.
+3. Remove any dashboard-level Install Command, Build Command, or Output Directory overrides so Vercel uses `client/vercel.json`.
+4. Redeploy. The configured commands install the client dependencies, run the TypeScript/Vite production build, and publish the `dist` directory.
 
-## Deployed API
+The SPA rewrite in `client/vercel.json` serves the app entry point on client-side routes. The `api/` and `server/` directories are outside this Vercel project's root and are not deployed. No environment variables are required for the current frontend.
 
-- `GET /api/health`
-- `GET /api/watersheds`
-- `GET /api/watershed/:id`
-- `GET /api/alerts`
+## Local development
 
-These endpoints return sample fixture data. The current frontend also reads local fixtures directly; deploying the API does not switch the screens to live data. The Express server under `server/` remains available for local development using the root `npm run install:all` and `npm run dev` scripts.
-
-This deployment is a static prototype plus mock serverless API; it does not include a production database, authentication, image uploads, or satellite/AI processing services.
+The Express server under `server/` remains available for local development using the root `npm run install:all` and `npm run dev` scripts. It is intentionally not part of this frontend-only Vercel deployment.
