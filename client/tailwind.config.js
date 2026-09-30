@@ -1,0 +1,2 @@
+/** @type {import('tailwindcss').Config} */
+export default {content:['./index.html','./src/**/*.{ts,tsx}'],theme:{extend:{fontFamily:{display:['Space Grotesk','sans-serif'],body:['IBM Plex Sans','Noto Sans Devanagari','sans-serif'],mono:['IBM Plex Mono','monospace']},colors:{earth:'#0E1512',basalt:'#16211C',loam:'#8B6239',moss:'#56684A',cyan:'#4FB3C9',amber:'#D99A3D',clay:'#C24B3A',paper:'#EDE8D8',ink:'#1B2420',muted:'#7C8577'}}},plugins:[]}
